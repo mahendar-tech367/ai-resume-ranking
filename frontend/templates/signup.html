@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | ResumeRanker</title>
+
+  <!-- ✅ Flask static CSS paths -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/resumera.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ✅ Error message styling */
+    .error-message {
+      color: red;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <div class="nav_bar">
+    <div class="t-img-logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+      <div class="brand-title">
+        <span class="main-title">ResumeRanker</span><br>
+        <span class="slogan">Rank Refine Redefine</span>
+      </div>
+    </div>
+
+    <div class="features">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+  </div>
+
+  <!-- ✅ Flash Messages -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+          <p class="flash-msg">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- ✅ Signup Box -->
+  <div class="signup-container">
+    <div class="signup-box">
+      <h1>Create Account</h1>
+
+      <form method="POST" action="{{ url_for('signup') }}" onsubmit="return validateForm()">
+        <label for="username">Email or Phone</label>
+        <input type="text" id="username" name="username" placeholder="Enter email or phone" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create password" required>
+
+        <label for="role">Select Role</label>
+        <select id="role" name="role">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <!-- ✅ Inline error message below form -->
+      <p id="error-message" class="error-message"></p>
+
+      <p class="login-link">
+        Already have an account? <a href="{{ url_for('login') }}">Log In</a>
+      </p>
+
+      <a href="{{ url_for('home') }}" class="back">⬅ Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ✅ JavaScript Validation -->
+  <script>
+    function validateForm() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMessage = document.getElementById("error-message");
+
+      errorMessage.style.display = "none";
+      errorMessage.textContent = "";
+
+      // Phone validation
+      if (/^\d+$/.test(username)) {
+        if (username.length < 10) {
+          errorMessage.textContent = "📱 Phone number should be at least 10 digits.";
+          errorMessage.style.display = "block";
+          return false;
+        }
+      } 
+      // Email validation
+      else {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(username)) {
+          errorMessage.textContent = "📧 Please enter a valid email address.";
+          errorMessage.style.display = "block";
+          return false;
+        }
+      }
+
+      // Password validation
+      if (password.length < 8) {
+        errorMessage.textContent = "🔒 Password must be at least 8 characters long.";
+        errorMessage.style.display = "block";
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeRanker - Home</title>
+
+  <!-- ✅ Link your styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/resumera.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+</head>
+
+<body class="Home_page">
+        <div class="flash-messages">
+                <p class="flash {{ category }}">{{ message }}</p>
+        </div>
+<!-- ✅ Navbar -->
+<div class="nav_bar">
+  <div class="t-img-logo">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    <div class="brand-title">
+      <span class="main-title">ResumeRanker</span><br>
+      <span class="slogan">Rank Refine Redefine</span>
+    </div>
+  </div>
+  
+<div class="features">
+    <a class="one" href="{{ url_for('about') }}"><p>About Us</p></a>
+    <a class="one" href="{{ url_for('contact') }}"><p>Contact Us</p></a>
+  </div>
+
+  <a href="{{ url_for('login') }}"><button class="Login-btn">Login</button></a>
+  <a href="{{ url_for('signup') }}"><button class="signup-btn">Signup</button></a>
+</div>
+
+<!-- ✅ Header -->
+<div class="head">
+  <div class="first-text">
+    <h1>Rank Resumes<br>Intelligently</h1>
+  </div>
+  <p>Save time and find the best candidates faster with our AI-powered resume ranking system.</p>
+  <a href="{{ url_for('learn') }}" class="learn-btn">Learn More</a>
+</div>
+
+<!-- ✅ How It Works -->
+<div class="Home-body">
+  <div class="b-h">
+    <h1>How It Works</h1>
+  </div>
+
+  <div class="logo-set">
+    <div class="upload">
+      <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload Resume" width="300"><br>
+      <h4>Upload Resumes</h4>
+      <p>Upload multiple resumes in PDF, DOCX, or TXT format.</p>
+    </div>
+
+    <div class="set-cri">
+      <img src="{{ url_for('static', filename='images/setcriteria.png') }}" alt="Set Criteria" width="300"><br>
+      <h4>Set Criteria</h4>
+      <p>Define job requirements and ranking criteria.</p>
+    </div>
+
+    <div class="ai-anal">
+      <img src="{{ url_for('static', filename='images/aianalysis.png') }}" alt="AI Analysis" width="300"><br>
+      <h4>AI Analysis</h4>
+      <p>Our AI analyzes and ranks resumes for relevance and quality.</p>
+    </div>
+
+    <div class="get-result">
+      <img src="{{ url_for('static', filename='images/results.png') }}" alt="Get Results" width="300"><br>
+      <h4>Get Results</h4>
+      <p>Receive ranked lists with scores and detailed insights.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Why Choose ResumeRanker -->
+<div class="detail-ston">
+  <div class="det-he">
+    <h1 class="det-h1">Why Choose ResumeRanker</h1>
+  </div>
+  <div class="detail-body">
+    <div class="powred-analysis">
+      <img src="{{ url_for('static', filename='images/poweredanalysis.png') }}" alt="Powered Analysis">
+      <h3>Powered Analysis</h3>
+      <p>
+        Advanced machine learning<br>
+        algorithms analyze resume<br>
+        content and context for<br>
+        accurate ranking.
+      </p>
+    </div>
+    <div class="time-save">
+      <img src="{{ url_for('static', filename='images/timesaving.png') }}" alt="Time Saver">
+      <h3>Time Saver</h3>
+      <p>
+        Reduce resume screening<br>
+        time by up to 65% and focus<br>
+        on the most qualified<br>
+        candidates.
+      </p>
+    </div>
+    <div class="insights">
+      <img src="{{ url_for('static', filename='images/detailed.png') }}" alt="Insights">
+      <h3>Detailed Insights</h3>
+      <p>
+        Get comprehensive analytics<br>
+        and visual reports on<br>
+        candidate qualifications.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Upload Section -->
+<div id="upload-section" class="upload-section">
+  <form id="uploadForm" action="{{ url_for('rank') }}" method="POST" enctype="multipart/form-data">
+    <div class="up-box">
+      <input type="file" id="resumeUpload" name="resumes" multiple accept=".pdf,.docx,.txt">
+      <label for="resumeUpload" class="choose-btn">Choose Files</label>
+      <ul id="file-list"></ul>
+      <button type="submit" class="up-btn">Rank Resumes</button>
+      <p id="alertMsg" class="alert-msg">⚠️ Please upload your resume.</p>
+    </div>
+  </form>
+</div>
+
+<!-- ✅ JavaScript -->
+<script>
+const input = document.getElementById('resumeUpload');
+const fileList = document.getElementById('file-list');
+const form = document.getElementById('uploadForm');
+const alertMsg = document.getElementById('alertMsg');
+
+input.addEventListener('change', () => {
+  fileList.innerHTML = '';
+  alertMsg.classList.remove('show');
+
+  Array.from(input.files).forEach((file,index)=>{
+    const li = document.createElement('li');
+    li.textContent = file.name;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = '❌';
+    removeBtn.className = 'remove-btn';
+    removeBtn.onclick = (e)=>{
+      e.preventDefault();
+      const dt = new DataTransfer();
+      const files = Array.from(input.files).filter((_, i)=> i!==index);
+      files.forEach(f=>dt.items.add(f));
+      input.files = dt.files;
+      input.dispatchEvent(new Event('change'));
+    };
+    li.appendChild(removeBtn);
+    fileList.appendChild(li);
+  });
+});
+
+form.addEventListener('submit',(e)=>{
+  if(input.files.length===0){
+    e.preventDefault();
+    alertMsg.classList.add('show');
+    setTimeout(()=>{alertMsg.classList.remove('show');},3000);
+  }
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

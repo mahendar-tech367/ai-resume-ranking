@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Ranking Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+<h2>📊 Resume Ranking Results</h2>
+
+<table border="1" cellpadding="10" style="margin:auto; border-collapse:collapse;">
+  <tr>
+    <th>Rank</th>
+    <th>Filename</th>
+    <th>Total Score</th>
+    <th>Experience (Years)</th>
+    <th>Projects</th>
+    <th>Keyword Hits</th>
+  </tr>
+  {% for fname, score, exp, proj, hits in results %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ fname }}</td>
+    <td>{{ score }}</td>
+    <td>{{ exp }}</td>
+    <td>{{ proj }}</td>
+    <td>{{ hits }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br><center>
+<a href="{{ url_for('rank') }}">
+  <button style="padding:10px 20px; background:#008CBA; color:white; border:none; border-radius:6px; cursor:pointer;">
+    ⬅ Back to Upload
+  </button>
+</a>
+</center>
+</body>
+</html>
+
+
+
+
+
+
+
+

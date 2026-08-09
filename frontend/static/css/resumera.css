@@ -1,0 +1,411 @@
+/* ------------------------------
+   ✅ Global Styles
+------------------------------ */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: #f8faff;
+  color: #222;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+/* ------------------------------
+   ✅ Navbar
+------------------------------ */
+.nav_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.t-img-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.t-img-logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.brand-title .main-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.brand-title .slogan {
+  font-size: 13px;
+  color: #555;
+}
+
+.features {
+  display: flex;
+  gap: 30px;
+}
+
+.features a {
+  text-decoration: none;
+  color: #222;
+  transition: color 0.3s;
+}
+
+.features a:hover {
+  color: #0078ff;
+}
+
+.Login-btn, .signup-btn {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.Login-btn {
+  background-color: transparent;
+  color: #0078ff;
+  border: 2px solid #0078ff;
+}
+
+.Login-btn:hover {
+  background-color: #0078ff;
+  color: white;
+}
+
+.signup-btn {
+  background-color: #0078ff;
+  color: white;
+}
+
+.signup-btn:hover {
+  background-color: #005fcc;
+}
+
+/* ------------------------------
+   ✅ Header Section
+------------------------------ */
+.head {
+  text-align: center;
+  padding: 100px 20px 80px 20px;
+  background: linear-gradient(135deg, #e3f2ff 0%, #ffffff 100%);
+}
+
+.head .first-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.head p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.learn-btn {
+  text-decoration: none;
+  background-color: #0078ff;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.learn-btn:hover {
+  background-color: #005fcc;
+}
+
+/* ------------------------------
+   ✅ How it Works
+------------------------------ */
+.Home-body {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.b-h h1 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin-bottom: 50px;
+}
+
+.logo-set {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.logo-set div {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  width: 260px;
+}
+
+.logo-set div:hover {
+  transform: translateY(-5px);
+}
+
+.logo-set img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+/* ------------------------------
+   ✅ Why Choose ResumeRanker
+------------------------------ */
+.detail-ston {
+  background: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+  box-shadow: inset 0 2px 20px rgba(0,0,0,0.03);
+}
+
+.det-he h1 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin-bottom: 60px;
+}
+
+.detail-body {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.detail-body div {
+  background: #f8faff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 280px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-body div:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.detail-body img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.detail-body h3 {
+  font-size: 20px;
+  color: #0078ff;
+  margin-bottom: 10px;
+}
+
+.detail-body p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ------------------------------
+   ✅ Upload Section
+------------------------------ */
+.upload-section {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #eaf4ff 0%, #ffffff 100%);
+}
+
+.up-box {
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* hide default choose file button */
+input[type="file"] {
+  display: none;
+}
+
+.choose-btn {
+  display: inline-block;
+  background-color: #0078ff;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.choose-btn:hover {
+  background-color: #005fcc;
+}
+
+#file-name {
+  display: block;
+  margin: 15px 0;
+  color: #555;
+}
+
+.up-btn {
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.up-btn:hover {
+  background-color: #005fcc;
+}
+
+/* ------------------------------
+   ✅ Responsive Design
+------------------------------ */
+@media (max-width: 768px) {
+  .nav_bar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .features {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .head .first-text h1 {
+    font-size: 36px;
+  }
+
+  .logo-set div,
+  .detail-body div {
+    width: 90%;
+  }
+
+  .up-box {
+    width: 90%;
+    padding: 30px;
+  }
+}
+#file-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  text-align: left;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#file-list li {
+  background: #f0f6ff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.remove-btn:hover {
+  color: #c60000;
+}
+html {
+  scroll-behavior: smooth;
+}
+.flash-messages {
+  margin: 15px auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.flash {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.flash.error {
+  background-color: #ffe3e3;
+  color: #d00000;
+  border: 1px solid #d00000;
+}
+
+.flash.warning {
+  background-color: #fff6e3;
+  color: #b85c00;
+  border: 1px solid #b85c00;
+}
+
+.flash.success {
+  background-color: #e6ffea;
+  color: #006400;
+  border: 1px solid #00a000;
+}
+
+.flash.info {
+  background-color: #e3f3ff;
+  color: #005ca9;
+  border: 1px solid #005ca9;
+}
+.flash {
+    padding: 10px 20px;
+    margin: 10px auto;
+    width: fit-content;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.flash.success { background-color: #28a745; }
+.flash.warning { background-color: #ffc107; color:black; }
+.flash.danger { background-color: #dc3545; }
+
+.upload-section { margin: 50px auto; width: 80%; text-align:center; }
+.up-box { display:inline-block; padding:20px; border:1px solid #ccc; border-radius:8px; }
+.choose-btn, .up-btn { padding:10px 20px; margin:5px; cursor:pointer; }
+.alert-msg { color:red; display:none; }
+.alert-msg.show { display:block; }
+#file-list li { list-style:none; margin:5px 0; }
+.remove-btn { margin-left:10px; cursor:pointer; color:red; background:none; border:none; }
+

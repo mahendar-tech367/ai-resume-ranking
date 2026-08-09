@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | ResumeRanker</title>
+
+  <!-- Flask Static CSS Link -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+</head>
+<body>
+  <div class="contact-box">
+    <div class="heading-area">
+      <h1>Contact Us</h1>
+      <p>We’d love to hear from you! Please fill out the form below.</p>
+    </div>
+
+    <div class="foarm-section">
+      <!-- Left Side: Contact Form -->
+      <div class="part-one">
+        <form action="{{ url_for('contact') }}" method="POST">
+          <label>Name:</label>
+          <input type="text" name="name" placeholder="Enter your name" required>
+
+          <label>Email:</label>
+          <input type="email" name="email" placeholder="Enter your email" required>
+
+          <label>Phone:</label>
+          <input type="text" name="phone" placeholder="Enter your phone number" required>
+
+          <label>Message:</label>
+          <textarea name="message" placeholder="Enter your message" required></textarea>
+
+          <button type="submit">Send Message</button>
+
+          <!-- SUCCESS MESSAGE INSIDE FORM -->
+          
+                <div class="success-message" id="successMessage">{{ message }}</div>
+          
+        </form>
+      </div>
+
+      <!-- Right Side: Contact Info -->
+      <div class="part-two">
+        <h2>Get in Touch 📞</h2>
+        <p>If you have questions about ResumeRanker or need support, reach out to us!</p>
+        <ul>
+          <li><strong>Email:</strong> support@resumeranker.com</li>
+          <li><strong>Phone:</strong> +91 98765 43210</li>
+          <li><strong>Address:</strong> Hyderabad, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Home -->
+  <div class="back-container">
+    <a href="{{ url_for('home') }}" class="back">⬅ Back to Home</a>
+  </div>
+
+  <!-- JS to fade out success message after 5 seconds -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const msg = document.getElementById('successMessage');
+      if(msg) {
+        setTimeout(() => {
+          msg.classList.add('fade-out');
+        }, 5000); // fade out after 5 seconds
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+

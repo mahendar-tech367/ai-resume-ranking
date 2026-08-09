@@ -1,0 +1,182 @@
+/* ---------- Global ---------- */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f3f6ff, #dce5ff);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* ---------- Contact Box (Medium Page Size) ---------- */
+.contact-box {
+  width: 70%;          /* medium width for better UX */
+  max-width: 900px;    /* ensures it doesn’t get too wide on large screens */
+  margin: 60px auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  text-align: center;
+}
+
+/* ---------- Heading ---------- */
+.heading-area h1 {
+  font-size: 2em;      /* heading size remains prominent */
+  color: #004aad;
+  margin-bottom: 8px;
+}
+
+.heading-area p {
+  font-size: 1em;      /* subtitle readable */
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* ---------- Form Section ---------- */
+.foarm-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Left (Form) ---------- */
+.part-one {
+  flex: 1;
+  min-width: 320px;
+  text-align: left;
+}
+
+form label {
+  font-weight: 600;
+  color: #004aad;
+  display: block;
+  margin-top: 15px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  transition: 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #004aad;
+  box-shadow: 0 0 6px rgba(0, 74, 173, 0.3);
+}
+
+form textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* ---------- Submit Button ---------- */
+form button {
+  margin-top: 20px;
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #003480;
+}
+
+/* ---------- Right (Info Section) ---------- */
+.part-two {
+  flex: 1;
+  min-width: 320px;
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: inset 0 0 10px rgba(0, 74, 173, 0.05);
+}
+
+.part-two h2 {
+  color: #004aad;
+  margin-bottom: 15px;
+}
+
+.part-two p {
+  font-size: 1em;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.part-two ul {
+  list-style: none;
+  padding: 0;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* ---------- Back Button ---------- */
+.back-container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.back {
+  text-decoration: none;
+  color: #004aad;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.back:hover {
+  color: #002f6c;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+  .foarm-section {
+    flex-direction: column;
+  }
+
+  .contact-box {
+    width: 90%;       /* smaller width on mobile */
+    padding: 25px;
+  }
+
+  .heading-area h1 {
+    font-size: 1.8em;
+  }
+}
+
+/* ---------- Success Message Styling ---------- */
+.success-message {
+    font-size: 18px;      /* slightly bigger */
+    color: green;
+    margin-top: 15px;     /* space below form */
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    background-color: #e6ffe6;  /* light green background */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    transition: opacity 1s ease, transform 1s ease;  /* smooth fade + slide */
+}
+
+/* Fade out effect */
+.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);  /* slide up slightly while fading */
+}
+
+

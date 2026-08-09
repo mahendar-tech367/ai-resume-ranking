@@ -1,0 +1,106 @@
+/* ✅ Upload Section Styling (matches home theme) */
+
+.upload-section {
+  background: linear-gradient(to bottom, #f8faff, #e8f0ff);
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.up-box {
+  background: #ffffff;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.up-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide default input */
+input[type="file"] {
+  display: none;
+}
+
+/* Choose button */
+.choose-btn {
+  display: inline-block;
+  background-color: #1a73e8;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin: 10px;
+  box-shadow: 0 4px 10px rgba(26,115,232,0.2);
+}
+
+.choose-btn:hover {
+  background-color: #155fc2;
+  box-shadow: 0 6px 14px rgba(26,115,232,0.3);
+}
+
+/* Submit button */
+.up-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(26,115,232,0.2);
+}
+
+.up-btn:hover {
+  background-color: #155fc2;
+  box-shadow: 0 6px 16px rgba(26,115,232,0.3);
+}
+
+/* File list */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.remove-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: red;
+  font-size: 18px;
+}
+/* ⚠️ Alert message shown under Rank Resume button */
+.alert-msg {
+  color: #e63946;              /* Red text color */
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: center;
+  opacity: 0;                  /* Hidden by default */
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* When alert is visible */
+.alert-msg.show {
+  opacity: 1;
+}

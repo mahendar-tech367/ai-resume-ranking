@@ -1,0 +1,239 @@
+/* ----------------------------
+   General Page Setup
+----------------------------- */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8faff;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+/* ----------------------------
+   Navbar Styling (inherit home style)
+----------------------------- */
+.nav_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.t-img-logo {
+  display: flex;
+  align-items: center;
+}
+
+.t-img-logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.brand-title .main-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+}
+
+.brand-title .slogan {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.5px;
+}
+
+.features a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  margin: 0 18px;
+  transition: 0.3s ease;
+}
+
+.features a:hover {
+  color: #007bff;
+}
+
+/* ----------------------------
+   Login Box Styling
+----------------------------- */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.login-box h1 {
+  margin-bottom: 25px;
+  color: #222;
+  font-size: 26px;
+}
+
+/* ----------------------------
+   Form Styling
+----------------------------- */
+.login-box label {
+  display: block;
+  text-align: left;
+  font-weight: 500;
+  margin: 12px 0 6px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.login-box input:focus {
+  border-color: #007bff;
+}
+
+/* ----------------------------
+   Button Styling
+----------------------------- */
+.login-box button {
+  width: 100%;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 18px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-box button:hover {
+  background-color: #0056d9;
+  transform: scale(1.02);
+}
+
+/* ----------------------------
+   Error & Links
+----------------------------- */
+#error-message {
+  color: red;
+  margin-top: 8px;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.signup-link {
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------------
+   Animation
+----------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------
+   Responsive Design
+----------------------------- */
+@media (max-width: 500px) {
+  .login-box {
+    width: 90%;
+    padding: 30px 25px;
+  }
+
+  .nav_bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+.flash-messages {
+  text-align: center;
+  margin: 10px auto;
+  padding: 12px;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  width: 80%;
+}
+.flash-messages {
+  text-align: center;
+  margin: 15px auto;
+  padding: 12px;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  width: 80%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+ }
+.error-message {
+      color: red;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+.error-message {
+      color: red;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    /* ✅ Flask login error */
+    .login-error {
+      color: red;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+
