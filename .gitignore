@@ -10,3 +10,34 @@ __pycache__/
 resumeranker.db
 backend/uploads/
 frontend/uploads/
+# Environment variables
+.env
+.env.*
+backend/.env
+backend/.env.*
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Local database
+*.db
+resumeranker.db
+
+# Uploaded files
+uploads/
+backend/uploads/
+
+# IDE files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
