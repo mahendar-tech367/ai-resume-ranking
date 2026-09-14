@@ -1,28 +1,12 @@
-# Python cache files
+.env
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Virtual environments
-venv/
-.venv/
-env/
-
-# Environment variables
+resumeranker.db
+frontend/uploads/
 .env
-
-# Local databases
-*.db
-*.sqlite
-*.sqlite3
-
-# Uploaded files
-uploads/
-
-# VS Code settings
-.vscode/
-
-# Operating system files
-.DS_Store
-Thumbs.db
+backend/.env
+__pycache__/
+*.pyc
+resumeranker.db
+backend/uploads/
+frontend/uploads/
