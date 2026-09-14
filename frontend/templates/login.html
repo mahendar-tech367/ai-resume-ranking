@@ -5,16 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | ResumeRanker</title>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/resumera.css') }}">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/login.css') }}">
+
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/resumera.css') }}">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- ✅ Navbar -->
+  <!-- Navbar -->
   <div class="nav_bar">
     <div class="t-img-logo">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}"
+           alt="Logo">
+
       <div class="brand-title">
         <span class="main-title">ResumeRanker</span><br>
         <span class="slogan">Rank Refine Redefine</span>
@@ -28,41 +36,327 @@
     </div>
   </div>
 
-  <!-- ✅ Login Section -->
+
+  <!-- Login Section -->
   <div class="login-container">
     <div class="login-box">
+
       <h1>Login</h1>
 
-      <form method="POST" action="{{ url_for('login') }}">
-        <label for="username">Email or Phone Number</label>
-        <input type="text" id="username" name="username" placeholder="Enter your email or phone number" required>
+      <form method="POST"
+            action="{{ url_for('login') }}">
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <label for="username">
+          Username
+        </label>
 
-        <button type="submit">Login</button>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          required
+        >
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        >
+
+        <button type="submit">
+          Login
+        </button>
+
       </form>
 
-              <p style="color: red; text-align:center; margin-top: 12px; font-weight:500;">{{ message }}</p>
-      <p class="signup-link">
-        Don’t have an account? <a href="{{ url_for('signup') }}">Sign Up</a>
+
+      <!-- Flask flash messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p
+              style="
+                color:
+                {% if category == 'success' %}
+                  green
+                {% else %}
+                  red
+                {% endif %};
+                text-align: center;
+                margin-top: 12px;
+                font-weight: 500;
+              "
+            >
+              {{ message }}
+            </p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+
+      <!-- Forgot Password -->
+      <p class="forgot-password-link">
+        <a href="#" id="forgotPasswordLink">
+          Forgot Password?
+        </a>
       </p>
 
-      <a href="{{ url_for('home') }}" class="back">⬅ Back to Home</a>
+
+      <!-- Signup -->
+      <p class="signup-link">
+        Don’t have an account?
+        <a href="{{ url_for('signup') }}">
+          Sign Up
+        </a>
+      </p>
+
+      <a href="{{ url_for('home') }}"
+         class="back">
+        ⬅ Back to Home
+      </a>
+
     </div>
   </div>
 
+
+  <!-- Forgot Password Modal -->
+  <div id="forgotPasswordModal"
+       class="forgot-modal">
+
+    <div class="forgot-modal-box">
+
+      <button
+        type="button"
+        id="closeForgotModal"
+        class="close-modal"
+      >
+        &times;
+      </button>
+
+      <h2>Forgot Password?</h2>
+
+      <p>
+        Enter your registered email address.
+        We will send you a password reset link.
+      </p>
+
+      <form id="forgotPasswordForm">
+
+        <label for="forgotEmail">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          id="forgotEmail"
+          name="email"
+          placeholder="Enter your registered email"
+          required
+        >
+
+        <button type="submit">
+          Send Reset Link
+        </button>
+
+      </form>
+
+      <p id="forgotMessage"></p>
+
+    </div>
+  </div>
+
+
+  <style>
+    .forgot-password-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .forgot-password-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .forgot-password-link a:hover {
+      text-decoration: underline;
+    }
+
+    .forgot-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .forgot-modal-box {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .forgot-modal-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .forgot-modal-box p {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .forgot-modal-box label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    .forgot-modal-box input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .forgot-modal-box button[type="submit"] {
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .forgot-modal-box button[type="submit"]:hover {
+      background: #0056b3;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    #forgotMessage {
+      margin-top: 15px;
+      font-weight: 500;
+    }
+  </style>
+
+
+  <script>
+    const forgotPasswordLink =
+      document.getElementById("forgotPasswordLink");
+
+    const forgotPasswordModal =
+      document.getElementById("forgotPasswordModal");
+
+    const closeForgotModal =
+      document.getElementById("closeForgotModal");
+
+    const forgotPasswordForm =
+      document.getElementById("forgotPasswordForm");
+
+    const forgotMessage =
+      document.getElementById("forgotMessage");
+
+
+    // Open modal
+    forgotPasswordLink.addEventListener("click", function(event) {
+      event.preventDefault();
+
+      forgotPasswordModal.style.display = "flex";
+      forgotMessage.textContent = "";
+      forgotPasswordForm.reset();
+    });
+
+
+    // Close modal
+    closeForgotModal.addEventListener("click", function() {
+      forgotPasswordModal.style.display = "none";
+    });
+
+
+    // Close when clicking outside the modal
+    window.addEventListener("click", function(event) {
+      if (event.target === forgotPasswordModal) {
+        forgotPasswordModal.style.display = "none";
+      }
+    });
+
+
+    // Submit forgot-password form
+    forgotPasswordForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const email =
+        document.getElementById("forgotEmail").value.trim();
+
+      forgotMessage.style.color = "black";
+      forgotMessage.textContent = "Sending reset link...";
+
+      try {
+        const response = await fetch(
+          "{{ url_for('forgot_password') }}",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: email
+            })
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          forgotMessage.style.color = "green";
+          forgotMessage.textContent = data.message;
+        } else {
+          forgotMessage.style.color = "red";
+          forgotMessage.textContent =
+            data.error || "Something went wrong.";
+        }
+
+      } catch (error) {
+        console.error("Forgot password error:", error);
+
+        forgotMessage.style.color = "red";
+        forgotMessage.textContent =
+          "Unable to connect to the server.";
+      }
+    });
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

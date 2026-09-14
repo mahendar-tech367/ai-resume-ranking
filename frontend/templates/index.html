@@ -5,174 +5,1401 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ResumeRanker - Home</title>
 
-  <!-- ✅ Link your styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/resumera.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
 </head>
 
 <body class="Home_page">
-        <div class="flash-messages">
-                <p class="flash {{ category }}">{{ message }}</p>
+
+  <!-- ================= FLASH MESSAGES ================= -->
+
+  <div class="flash-messages">
+    <p class="flash {{ category }}">{{ message }}</p>
+  </div>
+
+
+  <!-- ================= NAVBAR ================= -->
+
+  <div class="nav_bar">
+
+    <div class="t-img-logo">
+      <img
+        src="{{ url_for('static', filename='images/logo.png') }}"
+        alt="Logo"
+      >
+
+      <div class="brand-title">
+        <span class="main-title">ResumeRanker</span><br>
+        <span class="slogan">Rank Refine Redefine</span>
+      </div>
+    </div>
+
+
+    <div class="features">
+      <a class="one" href="{{ url_for('about') }}">
+        <p>About Us</p>
+      </a>
+
+      <a class="one" href="{{ url_for('contact') }}">
+        <p>Contact Us</p>
+      </a>
+    </div>
+
+
+    <a href="{{ url_for('login') }}">
+      <button class="Login-btn">Login</button>
+    </a>
+
+    <a href="{{ url_for('signup') }}">
+      <button class="signup-btn">Signup</button>
+    </a>
+
+  </div>
+
+
+  <!-- ================= HEADER ================= -->
+
+  <div class="head">
+
+    <div class="first-text">
+      <h1>
+        Rank Resumes<br>
+        Intelligently
+      </h1>
+    </div>
+
+    <p>
+      Save time and find the best candidates faster with our
+      AI-powered resume ranking system.
+    </p>
+
+    <a href="{{ url_for('learn') }}" class="learn-btn">
+      Learn More
+    </a>
+
+  </div>
+
+
+  <!-- ================= HOW IT WORKS ================= -->
+
+  <div class="Home-body">
+
+    <div class="b-h">
+      <h1>How It Works</h1>
+    </div>
+
+
+    <div class="logo-set">
+
+      <div class="upload">
+        <img
+          src="{{ url_for('static', filename='images/upload.png') }}"
+          alt="Upload Resume"
+          width="300"
+        >
+
+        <br>
+
+        <h4>Upload Resumes</h4>
+
+        <p>
+          Upload multiple resumes in PDF, DOCX, or TXT format.
+        </p>
+      </div>
+
+
+      <div class="set-cri">
+        <img
+          src="{{ url_for('static', filename='images/setcriteria.png') }}"
+          alt="Set Criteria"
+          width="300"
+        >
+
+        <br>
+
+        <h4>Set Criteria</h4>
+
+        <p>
+          Define job requirements and ranking criteria.
+        </p>
+      </div>
+
+
+      <div class="ai-anal">
+        <img
+          src="{{ url_for('static', filename='images/aianalysis.png') }}"
+          alt="AI Analysis"
+          width="300"
+        >
+
+        <br>
+
+        <h4>AI Analysis</h4>
+
+        <p>
+          Our AI analyzes and ranks resumes for relevance and quality.
+        </p>
+      </div>
+
+
+      <div class="get-result">
+        <img
+          src="{{ url_for('static', filename='images/results.png') }}"
+          alt="Get Results"
+          width="300"
+        >
+
+        <br>
+
+        <h4>Get Results</h4>
+
+        <p>
+          Receive ranked lists with scores and detailed insights.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= WHY CHOOSE RESUMERANKER ================= -->
+
+  <div class="detail-ston">
+
+    <div class="det-he">
+      <h1 class="det-h1">
+        Why Choose ResumeRanker
+      </h1>
+    </div>
+
+
+    <div class="detail-body">
+
+      <div class="powred-analysis">
+
+        <img
+          src="{{ url_for('static', filename='images/poweredanalysis.png') }}"
+          alt="Powered Analysis"
+        >
+
+        <h3>Powered Analysis</h3>
+
+        <p>
+          Advanced machine learning<br>
+          algorithms analyze resume<br>
+          content and context for<br>
+          accurate ranking.
+        </p>
+
+      </div>
+
+
+      <div class="time-save">
+
+        <img
+          src="{{ url_for('static', filename='images/timesaving.png') }}"
+          alt="Time Saver"
+        >
+
+        <h3>Time Saver</h3>
+
+        <p>
+          Reduce resume screening<br>
+          time by up to 65% and focus<br>
+          on the most qualified<br>
+          candidates.
+        </p>
+
+      </div>
+
+
+      <div class="insights">
+
+        <img
+          src="{{ url_for('static', filename='images/detailed.png') }}"
+          alt="Insights"
+        >
+
+        <h3>Detailed Insights</h3>
+
+        <p>
+          Get comprehensive analytics<br>
+          and visual reports on<br>
+          candidate qualifications.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= UPLOAD SECTION ================= -->
+
+  <div id="upload-section" class="upload-section">
+
+    <form
+      id="uploadForm"
+      action="{{ url_for('rank') }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+
+      <div class="up-box">
+
+        <input
+          type="file"
+          id="resumeUpload"
+          name="resumes"
+          multiple
+          accept=".pdf,.docx,.txt"
+        >
+
+        <label for="resumeUpload" class="choose-btn">
+          Choose Files
+        </label>
+
+        <ul id="file-list"></ul>
+
+        <button type="submit" class="up-btn">
+          Rank Resumes
+        </button>
+
+        <p id="alertMsg" class="alert-msg">
+          ⚠️ Please upload your resume.
+        </p>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <!-- ================= UPLOAD JAVASCRIPT ================= -->
+
+  <script>
+
+    const input = document.getElementById('resumeUpload');
+    const fileList = document.getElementById('file-list');
+    const form = document.getElementById('uploadForm');
+    const alertMsg = document.getElementById('alertMsg');
+
+
+    input.addEventListener('change', () => {
+
+      fileList.innerHTML = '';
+      alertMsg.classList.remove('show');
+
+
+      Array.from(input.files).forEach((file, index) => {
+
+        const li = document.createElement('li');
+
+        li.textContent = file.name;
+
+
+        const removeBtn = document.createElement('button');
+
+        removeBtn.textContent = '❌';
+        removeBtn.className = 'remove-btn';
+
+
+        removeBtn.onclick = (e) => {
+
+          e.preventDefault();
+
+          const dt = new DataTransfer();
+
+          const files = Array.from(input.files)
+            .filter((_, i) => i !== index);
+
+
+          files.forEach(file => {
+            dt.items.add(file);
+          });
+
+
+          input.files = dt.files;
+
+          input.dispatchEvent(new Event('change'));
+
+        };
+
+
+        li.appendChild(removeBtn);
+        fileList.appendChild(li);
+
+      });
+
+    });
+
+
+    form.addEventListener('submit', (e) => {
+
+      if (input.files.length === 0) {
+
+        e.preventDefault();
+
+        alertMsg.classList.add('show');
+
+        setTimeout(() => {
+          alertMsg.classList.remove('show');
+        }, 3000);
+
+      }
+
+    });
+
+  </script>
+
+
+  <!-- ===================================================== -->
+  <!-- ================= AI ROBOT CHAT POPUP ============== -->
+  <!-- ===================================================== -->
+
+
+  <!-- ================= FLOATING ROBOT BUTTON ================= -->
+
+  <div
+    class="ai-robot-launcher"
+    id="aiRobotLauncher"
+    onclick="toggleAIChat()"
+    title="Open Resume AI"
+    aria-label="Open Resume AI chatbot"
+  >
+
+    <div class="robot-glow"></div>
+
+
+    <div class="robot-head">
+
+      <div class="robot-antenna"></div>
+
+
+      <div class="robot-face">
+
+        <div class="robot-eye"></div>
+        <div class="robot-eye"></div>
+
+      </div>
+
+
+      <div class="robot-mouth"></div>
+
+    </div>
+
+
+    <span class="robot-status">
+      AI
+    </span>
+
+  </div>
+
+
+
+  <!-- ================= AI CHAT POPUP ================= -->
+
+  <div class="ai-chat-popup" id="aiChatPopup">
+
+    <div class="ai-chat-header">
+
+      <div class="ai-profile">
+
+        <div class="mini-robot">
+          🤖
         </div>
-<!-- ✅ Navbar -->
-<div class="nav_bar">
-  <div class="t-img-logo">
-    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-    <div class="brand-title">
-      <span class="main-title">ResumeRanker</span><br>
-      <span class="slogan">Rank Refine Redefine</span>
+
+
+        <div>
+
+          <h3>Resume AI</h3>
+
+          <span>
+            Online assistant
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="ai-close-btn"
+        onclick="toggleAIChat()"
+        aria-label="Close chatbot"
+      >
+        ×
+      </button>
+
     </div>
+
+
+
+    <div class="ai-chat-messages" id="aiChatMessages">
+
+      <div class="ai-message bot-message">
+        Hey! 👋 I’m Resume AI.
+        <br>
+        How can I help you today?
+      </div>
+
+    </div>
+
+
+
+    <div class="ai-typing" id="aiTyping">
+      Resume AI is typing...
+    </div>
+
+
+
+    <div class="ai-chat-input-area">
+
+      <input
+        type="text"
+        id="aiMessageInput"
+        placeholder="Ask something..."
+        autocomplete="off"
+        onkeydown="if(event.key === 'Enter') sendAIMessage()"
+      />
+
+
+      <button
+        onclick="sendAIMessage()"
+        class="ai-send-btn"
+        aria-label="Send message"
+      >
+        ➤
+      </button>
+
+    </div>
+
   </div>
-  
-<div class="features">
-    <a class="one" href="{{ url_for('about') }}"><p>About Us</p></a>
-    <a class="one" href="{{ url_for('contact') }}"><p>Contact Us</p></a>
-  </div>
 
-  <a href="{{ url_for('login') }}"><button class="Login-btn">Login</button></a>
-  <a href="{{ url_for('signup') }}"><button class="signup-btn">Signup</button></a>
-</div>
 
-<!-- ✅ Header -->
-<div class="head">
-  <div class="first-text">
-    <h1>Rank Resumes<br>Intelligently</h1>
-  </div>
-  <p>Save time and find the best candidates faster with our AI-powered resume ranking system.</p>
-  <a href="{{ url_for('learn') }}" class="learn-btn">Learn More</a>
-</div>
 
-<!-- ✅ How It Works -->
-<div class="Home-body">
-  <div class="b-h">
-    <h1>How It Works</h1>
-  </div>
+  <!-- ================= AI ROBOT CSS ================= -->
 
-  <div class="logo-set">
-    <div class="upload">
-      <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload Resume" width="300"><br>
-      <h4>Upload Resumes</h4>
-      <p>Upload multiple resumes in PDF, DOCX, or TXT format.</p>
-    </div>
+  <style>
 
-    <div class="set-cri">
-      <img src="{{ url_for('static', filename='images/setcriteria.png') }}" alt="Set Criteria" width="300"><br>
-      <h4>Set Criteria</h4>
-      <p>Define job requirements and ranking criteria.</p>
-    </div>
+    /* ===================================================== */
+    /* ================= MIDDLE-RIGHT ROBOT ================ */
+    /* ===================================================== */
 
-    <div class="ai-anal">
-      <img src="{{ url_for('static', filename='images/aianalysis.png') }}" alt="AI Analysis" width="300"><br>
-      <h4>AI Analysis</h4>
-      <p>Our AI analyzes and ranks resumes for relevance and quality.</p>
-    </div>
+    .ai-robot-launcher {
 
-    <div class="get-result">
-      <img src="{{ url_for('static', filename='images/results.png') }}" alt="Get Results" width="300"><br>
-      <h4>Get Results</h4>
-      <p>Receive ranked lists with scores and detailed insights.</p>
-    </div>
-  </div>
-</div>
+      position: fixed;
 
-<!-- ✅ Why Choose ResumeRanker -->
-<div class="detail-ston">
-  <div class="det-he">
-    <h1 class="det-h1">Why Choose ResumeRanker</h1>
-  </div>
-  <div class="detail-body">
-    <div class="powred-analysis">
-      <img src="{{ url_for('static', filename='images/poweredanalysis.png') }}" alt="Powered Analysis">
-      <h3>Powered Analysis</h3>
-      <p>
-        Advanced machine learning<br>
-        algorithms analyze resume<br>
-        content and context for<br>
-        accurate ranking.
-      </p>
-    </div>
-    <div class="time-save">
-      <img src="{{ url_for('static', filename='images/timesaving.png') }}" alt="Time Saver">
-      <h3>Time Saver</h3>
-      <p>
-        Reduce resume screening<br>
-        time by up to 65% and focus<br>
-        on the most qualified<br>
-        candidates.
-      </p>
-    </div>
-    <div class="insights">
-      <img src="{{ url_for('static', filename='images/detailed.png') }}" alt="Insights">
-      <h3>Detailed Insights</h3>
-      <p>
-        Get comprehensive analytics<br>
-        and visual reports on<br>
-        candidate qualifications.
-      </p>
-    </div>
-  </div>
-</div>
+      top: 50%;
+      right: 25px;
 
-<!-- ✅ Upload Section -->
-<div id="upload-section" class="upload-section">
-  <form id="uploadForm" action="{{ url_for('rank') }}" method="POST" enctype="multipart/form-data">
-    <div class="up-box">
-      <input type="file" id="resumeUpload" name="resumes" multiple accept=".pdf,.docx,.txt">
-      <label for="resumeUpload" class="choose-btn">Choose Files</label>
-      <ul id="file-list"></ul>
-      <button type="submit" class="up-btn">Rank Resumes</button>
-      <p id="alertMsg" class="alert-msg">⚠️ Please upload your resume.</p>
-    </div>
-  </form>
-</div>
+      width: 78px;
+      height: 78px;
 
-<!-- ✅ JavaScript -->
-<script>
-const input = document.getElementById('resumeUpload');
-const fileList = document.getElementById('file-list');
-const form = document.getElementById('uploadForm');
-const alertMsg = document.getElementById('alertMsg');
+      border-radius: 50%;
 
-input.addEventListener('change', () => {
-  fileList.innerHTML = '';
-  alertMsg.classList.remove('show');
+      background: linear-gradient(
+        145deg,
+        #ffffff,
+        #dce9ff
+      );
 
-  Array.from(input.files).forEach((file,index)=>{
-    const li = document.createElement('li');
-    li.textContent = file.name;
+      box-shadow:
+        0 15px 25px rgba(0, 0, 0, 0.25),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.12),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.9);
 
-    const removeBtn = document.createElement('button');
-    removeBtn.textContent = '❌';
-    removeBtn.className = 'remove-btn';
-    removeBtn.onclick = (e)=>{
-      e.preventDefault();
-      const dt = new DataTransfer();
-      const files = Array.from(input.files).filter((_, i)=> i!==index);
-      files.forEach(f=>dt.items.add(f));
-      input.files = dt.files;
-      input.dispatchEvent(new Event('change'));
-    };
-    li.appendChild(removeBtn);
-    fileList.appendChild(li);
-  });
-});
+      cursor: pointer;
 
-form.addEventListener('submit',(e)=>{
-  if(input.files.length===0){
-    e.preventDefault();
-    alertMsg.classList.add('show');
-    setTimeout(()=>{alertMsg.classList.remove('show');},3000);
-  }
-});
-</script>
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transform: translateY(-50%);
+
+      animation: robotSideMovement 4s ease-in-out infinite;
+
+      transition: box-shadow 0.3s ease;
+
+    }
+
+
+    .ai-robot-launcher:hover {
+
+      box-shadow:
+        0 20px 35px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(0, 153, 255, 0.65),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.12),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.9);
+
+    }
+
+
+
+    /* ================= ROBOT GLOW ================= */
+
+    .robot-glow {
+
+      position: absolute;
+
+      inset: -10px;
+
+      border-radius: 50%;
+
+      background: radial-gradient(
+        circle,
+        rgba(0, 119, 255, 0.35),
+        transparent 70%
+      );
+
+      z-index: -1;
+
+      animation: glowPulse 2s infinite;
+
+    }
+
+
+
+    /* ================= ROBOT HEAD ================= */
+
+    .robot-head {
+
+      position: relative;
+
+      width: 48px;
+      height: 43px;
+
+      border-radius: 14px;
+
+      background: linear-gradient(
+        145deg,
+        #f8fbff,
+        #a9c4e8
+      );
+
+      border: 2px solid #7196c5;
+
+      box-shadow:
+        inset -4px -4px 7px rgba(0, 0, 0, 0.18),
+        inset 4px 4px 7px rgba(255, 255, 255, 0.9),
+        0 5px 10px rgba(0, 0, 0, 0.25);
+
+    }
+
+
+
+    /* ================= ROBOT ANTENNA ================= */
+
+    .robot-antenna {
+
+      position: absolute;
+
+      width: 4px;
+      height: 13px;
+
+      background: #5479b0;
+
+      top: -13px;
+      left: 20px;
+
+      border-radius: 5px;
+
+    }
+
+
+    .robot-antenna::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 10px;
+      height: 10px;
+
+      left: -3px;
+      top: -7px;
+
+      border-radius: 50%;
+
+      background: #00d9ff;
+
+      box-shadow: 0 0 12px #00d9ff;
+
+    }
+
+
+
+    /* ================= ROBOT FACE ================= */
+
+    .robot-face {
+
+      position: absolute;
+
+      left: 6px;
+      right: 6px;
+      top: 10px;
+
+      height: 19px;
+
+      border-radius: 8px;
+
+      background: #172b4d;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-evenly;
+
+      box-shadow: inset 0 0 8px #000;
+
+    }
+
+
+
+    .robot-eye {
+
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #00eaff;
+
+      box-shadow: 0 0 8px #00eaff;
+
+      animation: eyeBlink 4s infinite;
+
+    }
+
+
+
+    /* ================= ROBOT MOUTH ================= */
+
+    .robot-mouth {
+
+      position: absolute;
+
+      width: 16px;
+      height: 4px;
+
+      background: #5277a8;
+
+      border-radius: 5px;
+
+      bottom: 5px;
+      left: 14px;
+
+    }
+
+
+
+    /* ================= AI STATUS ================= */
+
+    .robot-status {
+
+      position: absolute;
+
+      right: -5px;
+      bottom: -4px;
+
+      background: #087eff;
+
+      color: white;
+
+      font-size: 10px;
+      font-weight: bold;
+
+      padding: 5px 7px;
+
+      border-radius: 12px;
+
+      border: 2px solid white;
+
+    }
+
+
+
+    /* ===================================================== */
+    /* ================= CHAT POPUP ======================== */
+    /* ===================================================== */
+
+    .ai-chat-popup {
+
+      position: fixed;
+
+      top: 50%;
+      right: 120px;
+
+      width: 365px;
+
+      max-width: calc(100vw - 145px);
+
+      height: 510px;
+
+      background: rgba(255, 255, 255, 0.96);
+
+      border: 1px solid rgba(255, 255, 255, 0.8);
+
+      border-radius: 24px;
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(0, 119, 255, 0.2);
+
+      backdrop-filter: blur(20px);
+
+      overflow: hidden;
+
+      z-index: 9998;
+
+      display: none;
+
+      flex-direction: column;
+
+      transform: translateY(-50%);
+
+      transform-origin: center right;
+
+    }
+
+
+
+    .ai-chat-popup.active {
+
+      display: flex;
+
+      animation: popupOpen 0.35s ease forwards;
+
+    }
+
+
+
+    /* ================= CHAT HEADER ================= */
+
+    .ai-chat-header {
+
+      background: linear-gradient(
+        135deg,
+        #086cff,
+        #753bff
+      );
+
+      color: white;
+
+      padding: 17px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+    }
+
+
+
+    .ai-profile {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+    }
+
+
+
+    .mini-robot {
+
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background: white;
+
+      border-radius: 14px;
+
+      font-size: 25px;
+
+    }
+
+
+
+    .ai-profile h3 {
+
+      margin: 0;
+
+      font-size: 17px;
+
+    }
+
+
+
+    .ai-profile span {
+
+      font-size: 12px;
+
+      opacity: 0.85;
+
+    }
+
+
+
+    .ai-close-btn {
+
+      border: none;
+
+      background: rgba(255, 255, 255, 0.2);
+
+      color: white;
+
+      width: 32px;
+      height: 32px;
+
+      border-radius: 50%;
+
+      font-size: 24px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .ai-close-btn:hover {
+
+      background: rgba(255, 255, 255, 0.35);
+
+    }
+
+
+
+    /* ===================================================== */
+    /* ================= CHAT MESSAGES ===================== */
+    /* ===================================================== */
+
+    .ai-chat-messages {
+
+      flex: 1;
+
+      padding: 18px;
+
+      overflow-y: auto;
+
+      background:
+
+        radial-gradient(
+          circle at top right,
+          rgba(0, 119, 255, 0.08),
+          transparent 45%
+        ),
+
+        #f5f8ff;
+
+    }
+
+
+
+    .ai-message {
+
+      max-width: 85%;
+
+      padding: 12px 14px;
+
+      margin-bottom: 12px;
+
+      border-radius: 16px;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      word-wrap: break-word;
+
+    }
+
+
+
+    .bot-message {
+
+      background: white;
+
+      color: #24344d;
+
+      border-top-left-radius: 4px;
+
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    }
+
+
+
+    .user-message {
+
+      margin-left: auto;
+
+      color: white;
+
+      background: linear-gradient(
+        135deg,
+        #087eff,
+        #663cff
+      );
+
+      border-top-right-radius: 4px;
+
+    }
+
+
+
+    .ai-typing {
+
+      display: none;
+
+      padding: 0 18px 8px;
+
+      font-size: 12px;
+
+      color: #6d7c91;
+
+      font-style: italic;
+
+    }
+
+
+
+    /* ===================================================== */
+    /* ================= CHAT INPUT ======================== */
+    /* ===================================================== */
+
+    .ai-chat-input-area {
+
+      display: flex;
+
+      gap: 8px;
+
+      padding: 13px;
+
+      background: white;
+
+      border-top: 1px solid #e5eaf3;
+
+    }
+
+
+
+    .ai-chat-input-area input {
+
+      flex: 1;
+
+      min-width: 0;
+
+      border: 1px solid #d8e0ee;
+
+      border-radius: 22px;
+
+      padding: 12px 15px;
+
+      outline: none;
+
+      font-size: 14px;
+
+    }
+
+
+
+    .ai-chat-input-area input:focus {
+
+      border-color: #087eff;
+
+      box-shadow: 0 0 0 3px rgba(8, 126, 255, 0.12);
+
+    }
+
+
+
+    .ai-send-btn {
+
+      width: 45px;
+      height: 45px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: linear-gradient(
+        135deg,
+        #087eff,
+        #663cff
+      );
+
+      color: white;
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      transition: transform 0.2s ease;
+
+    }
+
+
+
+    .ai-send-btn:hover {
+
+      transform: scale(1.08);
+
+    }
+
+
+
+    /* ===================================================== */
+    /* ================= ANIMATIONS ======================== */
+    /* ===================================================== */
+
+
+    /* Robot movement in the middle-right */
+
+    @keyframes robotSideMovement {
+
+      0% {
+
+        transform:
+          translateY(-50%)
+          translateX(0)
+          rotate(0deg);
+
+      }
+
+      25% {
+
+        transform:
+          translateY(calc(-50% - 12px))
+          translateX(-8px)
+          rotate(-3deg);
+
+      }
+
+      50% {
+
+        transform:
+          translateY(calc(-50% + 5px))
+          translateX(0)
+          rotate(0deg);
+
+      }
+
+      75% {
+
+        transform:
+          translateY(calc(-50% - 12px))
+          translateX(8px)
+          rotate(3deg);
+
+      }
+
+      100% {
+
+        transform:
+          translateY(-50%)
+          translateX(0)
+          rotate(0deg);
+
+      }
+
+    }
+
+
+
+    /* Robot glow animation */
+
+    @keyframes glowPulse {
+
+      0%, 100% {
+
+        opacity: 0.5;
+
+        transform: scale(0.9);
+
+      }
+
+      50% {
+
+        opacity: 1;
+
+        transform: scale(1.1);
+
+      }
+
+    }
+
+
+
+    /* Chat popup animation */
+
+    @keyframes popupOpen {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(-50%)
+          scale(0.65);
+
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(-50%)
+          scale(1);
+
+      }
+
+    }
+
+
+
+    /* Robot eye blinking */
+
+    @keyframes eyeBlink {
+
+      0%, 45%, 50%, 100% {
+
+        transform: scaleY(1);
+
+      }
+
+      47% {
+
+        transform: scaleY(0.1);
+
+      }
+
+    }
+
+
+
+    /* ===================================================== */
+    /* ================= MOBILE RESPONSIVE ================= */
+    /* ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .ai-robot-launcher {
+
+        top: 50%;
+        right: 12px;
+
+        width: 68px;
+        height: 68px;
+
+      }
+
+
+
+      .ai-chat-popup {
+
+        top: 50%;
+        right: 88px;
+
+        width: calc(100vw - 105px);
+
+        max-width: none;
+
+        height: 480px;
+
+      }
+
+    }
+
+
+
+    /* Accessibility: reduce movement when requested */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .ai-robot-launcher,
+      .robot-glow,
+      .robot-eye {
+
+        animation: none;
+
+      }
+
+    }
+
+  </style>
+
+
+
+  <!-- ================= AI CHAT JAVASCRIPT ================= -->
+
+  <script>
+
+    function toggleAIChat() {
+
+      const popup = document.getElementById("aiChatPopup");
+
+      popup.classList.toggle("active");
+
+
+      if (popup.classList.contains("active")) {
+
+        document
+          .getElementById("aiMessageInput")
+          .focus();
+
+      }
+
+    }
+
+
+
+    async function sendAIMessage() {
+
+      const input =
+        document.getElementById("aiMessageInput");
+
+      const messages =
+        document.getElementById("aiChatMessages");
+
+      const typing =
+        document.getElementById("aiTyping");
+
+
+      const userMessage =
+        input.value.trim();
+
+
+      if (!userMessage) {
+
+        return;
+
+      }
+
+
+
+      const userBubble =
+        document.createElement("div");
+
+      userBubble.className =
+        "ai-message user-message";
+
+      userBubble.textContent =
+        userMessage;
+
+
+      messages.appendChild(userBubble);
+
+
+      input.value = "";
+
+      typing.style.display = "block";
+
+      messages.scrollTop =
+        messages.scrollHeight;
+
+
+
+      try {
+
+        const response = await fetch("/chat", {
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type": "application/json"
+
+          },
+
+          body: JSON.stringify({
+
+            message: userMessage
+
+          })
+
+        });
+
+
+
+        const data =
+          await response.json();
+
+
+
+        const botBubble =
+          document.createElement("div");
+
+        botBubble.className =
+          "ai-message bot-message";
+
+
+
+        botBubble.textContent =
+
+          data.response ||
+
+          data.error ||
+
+          "Sorry, I could not understand that.";
+
+
+
+        messages.appendChild(botBubble);
+
+
+
+      } catch (error) {
+
+        const errorBubble =
+          document.createElement("div");
+
+        errorBubble.className =
+          "ai-message bot-message";
+
+
+
+        errorBubble.textContent =
+          "AI service is unavailable. Please try again.";
+
+
+
+        messages.appendChild(errorBubble);
+
+
+
+        console.error(
+          "AI Chat Error:",
+          error
+        );
+
+      } finally {
+
+        typing.style.display = "none";
+
+        messages.scrollTop =
+          messages.scrollHeight;
+
+      }
+
+    }
+
+  </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
