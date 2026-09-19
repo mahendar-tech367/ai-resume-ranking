@@ -1,9 +1,7 @@
 import os
 import re
-
-import psycopg2
-from psycopg2.extras import RealDictCursor
-
+import psycopg
+from psycopg.rows import dict_row
 from flask import (
     Flask,
     request,
@@ -110,19 +108,15 @@ if not DATABASE_URL:
         "DATABASE_URL is missing. Add your Supabase connection string to .env"
     )
 
-
 def get_db_connection():
     """
     Connect to Supabase PostgreSQL database.
     """
-
-    connection = psycopg2.connect(
+    connection = psycopg.connect(
         DATABASE_URL,
-        cursor_factory=RealDictCursor
+        row_factory=dict_row
     )
-
     return connection
-
 
 # =========================================================
 # MAILJET CONFIGURATION
@@ -1103,8 +1097,7 @@ def signup():
             return redirect(
                 url_for("login")
             )
-
-        except psycopg2.errors.UniqueViolation:
+        except psycopg.errors.UniqueViolation:
 
             if connection:
                 connection.rollback()
