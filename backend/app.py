@@ -16,6 +16,14 @@ from flask import (
 )
 
 from dotenv import load_dotenv
+# Load .env before importing other application modules
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+load_dotenv(
+    os.path.join(BASE_DIR, ".env")
+)
 from docx import Document
 from PyPDF2 import PdfReader
 from werkzeug.utils import secure_filename
@@ -32,21 +40,12 @@ from itsdangerous import (
     SignatureExpired
 )
 
-from aichatbox import chat_with_ai
+from .aichatbox import chat_with_ai
 
 
 # =========================================================
 # CONFIGURATION
 # =========================================================
-
-BASE_DIR = os.path.dirname(
-    os.path.abspath(__file__)
-)
-
-# Load .env from backend folder
-load_dotenv(
-    os.path.join(BASE_DIR, ".env")
-)
 
 FRONTEND_DIR = os.path.normpath(
     os.path.join(
