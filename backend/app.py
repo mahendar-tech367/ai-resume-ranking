@@ -1,6 +1,7 @@
 import os
 import re
 import psycopg
+import requests
 from psycopg.rows import dict_row
 from flask import (
     Flask,
@@ -1144,7 +1145,6 @@ def signup():
 # =========================================================
 # FORGOT PASSWORD ROUTE
 # =========================================================
-
 @app.route(
     "/forgot-password",
     methods=["POST"]
@@ -1163,7 +1163,6 @@ def forgot_password():
         ).strip().lower()
 
         if not email:
-
             return jsonify({
                 "error": "Please enter your email address."
             }), 400
@@ -1200,7 +1199,10 @@ def forgot_password():
             "a password reset link has been sent."
         )
 
+        # -----------------------------------------------------
         # Generic response for security
+        # -----------------------------------------------------
+
         if not user:
 
             print(
@@ -1242,6 +1244,7 @@ def forgot_password():
         )
 
         message.body = f"""
+
 Hello {user["username"]},
 
 You requested to reset your ResumeRanker password.
@@ -1256,12 +1259,61 @@ If you did not request this password reset,
 you can safely ignore this email.
 
 Regards,
+
 ResumeRanker Team
+
 """
 
-        mail.send(
-            message
+        # -----------------------------------------------------
+        # Send email through Mailjet HTTPS API
+        # -----------------------------------------------------
+
+        mailjet_api_key = os.getenv(
+            "MAIL_USERNAME"
         )
+
+        mailjet_secret_key = os.getenv(
+            "MAIL_PASSWORD"
+        )
+
+        sender_email = app.config[
+            "MAIL_DEFAULT_SENDER"
+        ]
+
+        mailjet_response = requests.post(
+            "https://api.mailjet.com/v3.1/send",
+
+            auth=(
+                mailjet_api_key,
+                mailjet_secret_key
+            ),
+
+            json={
+                "Messages": [
+                    {
+                        "From": {
+                            "Email": sender_email,
+                            "Name": "ResumeRanker"
+                        },
+
+                        "To": [
+                            {
+                                "Email": email
+                            }
+                        ],
+
+                        "Subject": message.subject,
+
+                        "TextPart": message.body
+                    }
+                ]
+            },
+
+            timeout=15
+        )
+
+
+        mailjet_response.raise_for_status()
 
         print(
             "Password reset email sent successfully!"
@@ -1290,8 +1342,6 @@ ResumeRanker Team
                 "Please check your Mailjet settings."
             )
         }), 500
-
-
 # =========================================================
 # RESET PASSWORD ROUTE
 # =========================================================
